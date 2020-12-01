@@ -46,12 +46,22 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript">
-  function Login() {
-var name=document.getElementById("user").value;
+    var url='admin.txt';
+ async function getapi(url) { 
+    
+    // Storing response 
+    const response = await fetch(url); 
+    
+    // Storing data in form of JSON 
+     var data = await response.text(); 
+    var str=data.split(" ");
+    console.log(str[0]);
+    console.log(str[1]);
+    var name=document.getElementById("user").value;
 var pas=document.getElementById("password").value;
 console.log(name);
 console.log(pas);
-if (name== "c" && pas == "c") {
+if (name== str[0] && pas == str[1]) {
  window.location="pooj.html";
  return false;
 }
@@ -220,7 +230,7 @@ label {
                                     <!-- Error Message -->
                                 </div>
                                 <div class="col-lg-6 login-btm login-button">
-                                    <button type="submit" class="btn btn-outline-primary" onclick="return Login();">LOGIN</button>
+                                    <button type="submit" class="btn btn-outline-primary" onclick="return getapi('admin.txt');">LOGIN</button>
                                 </div>
                             </div>
                         </form>
